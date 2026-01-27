@@ -1,9 +1,5 @@
 package com.example.product_api.dto;
 
-import com.example.product_api.models.Product;
-
-import java.time.LocalDateTime;
-
 public class ProductDTO {
     private Long id;
 

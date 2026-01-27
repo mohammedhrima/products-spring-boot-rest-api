@@ -3,19 +3,16 @@ package com.example.product_api.services;
 import com.example.product_api.dto.ProductDTO;
 import com.example.product_api.models.Product;
 import com.example.product_api.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import javax.management.RuntimeErrorException;
 
 @Service
 public class ProductService {
-    @Autowired
     private ProductRepository productRepository;
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     // convert entity to DTO
     private ProductDTO toProductDTO(Product product) {
@@ -40,7 +37,7 @@ public class ProductService {
                 .findAll()
                 .stream()
                 .map(this::toProductDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public ProductDTO findById(Long id) {
